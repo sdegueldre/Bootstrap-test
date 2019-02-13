@@ -1,94 +1,131 @@
-// Litera 4.2.1
+// Lumen 4.2.1
 // Bootswatch
 
 
 // Variables ===================================================================
 
-$font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !default;
+$web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic" !default;
+@import url($web-font-path);
+
+@mixin shadow($width: 4px){
+  border-style: solid;
+  border-width: 0 1px $width 1px;
+}
 
 // Navbar ======================================================================
 
 .navbar {
-  font-size: 0.875em;
+  @include shadow();
+}
+
+.bg-primary {
+  border-color: darken($primary, 5%);
 }
 
 .bg-dark {
-  background-color: $success !important;
+  border-color: darken($dark, 5%);
 }
 
 .bg-light {
   background-color: #fff !important;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-
-  &.navbar-fixed-top {
-    border-width: 0 0 1px 0;
-  }
-
-  &.navbar-fixed-bottom {
-    border-width: 1px 0 0 0;
-  }
+  border-color: darken(#fff, 5%);
 }
 
 // Buttons =====================================================================
 
 .btn {
-  border-radius: 1.078em;
-  font-family: $font-family-sans-serif;
-  font-size: 0.875em;
+  @include shadow();
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 
-  &-lg {
-    border-radius: 2.688em;
+  &:not(.disabled):hover {
+    margin-top: 1px;
+    border-bottom-width: 3px;
   }
 
-  &-sm {
-    border-radius: 0.844em;
-    font-size: 0.688em;
+  &:not(.disabled):active {
+    margin-top: 2px;
+    border-bottom-width: 2px;
+    @include box-shadow(none);
+  }
+}
+
+[class*="btn-outline"] {
+  border-top-width: 1px;
+}
+
+.btn {
+  &-primary {
+    border-color: darken($primary, 5%);
   }
 
-  &-secondary,
-  &-secondary:hover,
-  &-warning,
-  &-warning:hover {
+  &-secondary {
+    border-color: darken($secondary, 5%);
+  }
+
+  &-success {
+    border-color: darken($success, 5%);
+  }
+
+  &-info {
+    border-color: darken($info, 5%);
     color: $white;
+  }
+
+  &-danger {
+    border-color: darken($danger, 5%);
+  }
+
+  &-warning {
+    border-color: darken($warning, 5%);
+    color: $white;
+  }
+
+  &-light {
+    border-color: darken($light, 5%);
+  }
+
+  &-dark {
+    border-color: darken($dark, 5%);
+  }
+}
+
+.btn-group-vertical {
+  .btn + .btn {
+    &:hover {
+      margin-top: -1px;
+      border-top-width: 1px;
+    }
+
+    &:active {
+      margin-top: -1px;
+      border-top-width: 2px;
+    }
   }
 }
 
 // Typography ==================================================================
 
-p {
-  font-family: $font-family-serif;
+.text-secondary {
+  color: $gray-700 !important;
 }
 
-blockquote {
-  font-style: italic;
-}
-
-footer {
-  font-size: 0.875em;
-}
-
-.lead {
+.blockquote-footer {
   color: $gray-600;
-  font-family: $font-family-sans-serif;
 }
 
 // Tables ======================================================================
 
-table,
 .table {
-  font-size: 0.875em;
 
   &-primary,
-  &-secondary,
   &-success,
   &-info,
   &-warning,
   &-danger {
     color: #fff;
   }
-}
-
-.table {
 
   &-primary {
     &, > th, > td {
@@ -205,45 +242,179 @@ table,
 
 // Forms =======================================================================
 
+.form-control {
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.075);
+}
+
 // Navs ========================================================================
 
-.nav,
-.breadcrumb,
-.pagination {
-  font-size: 0.875em;
+.nav {
+  .open > a,
+  .open > a:hover,
+  .open > a:focus {
+    border-color: transparent;
+  }
+}
+
+.nav-tabs {
+
+  .nav-link {
+    color: $body-color;
+
+    &,
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:focus {
+      margin-top: 6px;
+      border-color: $nav-tabs-border-color;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:not(.disabled):hover,
+    &:not(.disabled):focus,
+    &.active {
+      padding-bottom: calc(0.5em + 6px);
+      border-bottom-color: transparent;
+      margin-top: 0;
+    }
+  }
+
+  &.nav-justified > li {
+    vertical-align: bottom;
+  }
 }
 
 .dropdown-menu {
-  font-size: 0.875em;
+  margin-top: 0;
+  @include shadow();
+  border-top-width: 1px;
+  @include box-shadow(none);
+}
+
+.breadcrumb {
+  border-color: darken($breadcrumb-bg, 5%);
+  @include shadow();
+}
+
+.pagination {
+
+  > li > a,
+  > li > span {
+    position: relative;
+    top: 0;
+    @include shadow();
+    color: $pagination-color;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+      top: 1px;
+      border-bottom-width: 3px;
+      text-decoration: none;
+    }
+
+    &:active {
+      top: 2px;
+      border-bottom-width: 2px;
+    }
+  }
+
+  > .disabled > a,
+  > .disabled > span {
+
+    &:hover {
+      top: 0;
+      @include shadow();
+    }
+
+    &:active {
+      top: 0;
+      @include shadow();
+    }
+  }
+}
+
+.pager {
+
+  > li > a,
+  > li > span,
+  > .disabled > a,
+  > .disabled > span {
+
+    &,
+    &:hover,
+    &:active {
+      border-left-width: 2px;
+      border-right-width: 2px;
+    }
+  }
 }
 
 // Indicators ==================================================================
 
-.alert {
-  border: none;
-  color: $white;
-  font-size: 0.875em;
+.close {
+  text-decoration: none;
+  opacity: 0.4;
 
-  &, p {
-    font-family: $font-family-sans-serif;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.alert {
+  color: $white;
+  @include shadow();
+
+  &-primary {
+    background-color: $primary;
+    border-color: darken($primary, 5%);
   }
 
-  a, .alert-link {
-    color: #fff;
+  &-secondary {
+    background-color: $secondary;
+    border-color: darken($secondary, 5%);
+  }
+
+  &-success {
+    background-color: $success;
+    border-color: darken($success, 5%);
+  }
+
+  &-info {
+    background-color: $info;
+    border-color: darken($info, 5%);
+  }
+
+  &-danger {
+    background-color: $danger;
+    border-color: darken($danger, 5%);
+  }
+
+  &-warning {
+    background-color: $warning;
+    border-color: darken($warning, 5%);
+  }
+
+  &-dark {
+    background-color: $dark;
+    border-color: darken($dark, 5%);
+  }
+
+  &-light {
+    background-color: $light;
+    border-color: darken($light, 5%);
+  }
+
+  .alert-link {
     font-weight: normal;
+    color: #fff;
     text-decoration: underline;
   }
 
-  @each $color, $value in $theme-colors {
-    &-#{$color} {
-      @if $enable-gradients {
-        background: $value linear-gradient(0deg, mix($body-bg, $value, 15%), $value) repeat-x;
-      } @else {
-        background-color: $value;
-      }
-    }
-  }
-
+  &-secondary,
   &-light {
     &,
     & a,
@@ -254,22 +425,65 @@ table,
 }
 
 .badge {
-  vertical-align: bottom;
-
-  &-secondary,
-  &-warning {
+  &-warning,
+  &-info {
     color: $white;
   }
-}
-
-.tooltip {
-  font-size: 11px;
 }
 
 // Progress bars ===============================================================
 
 // Containers ==================================================================
 
-.list-group {
-  font-size: 0.875em;
+a.list-group-item {
+
+  &-success {
+    &.active {
+      background-color: $success;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($success, 5%);
+    }
+  }
+
+  &-warning {
+    &.active {
+      background-color: $warning;
+    }
+    
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($warning, 5%);
+    }
+  }
+
+  &-danger {
+    &.active {
+      background-color: $danger;
+    }
+    
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($danger, 5%);
+    }
+  }
+}
+
+.jumbotron {
+  border: 1px solid $gray-200;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.modal {
+
+  .close {
+    color: $black;
+
+    &:not(:disabled):not(.disabled):hover,
+    &:not(:disabled):not(.disabled):focus {
+      color: $black;
+    }
+  }
 }
