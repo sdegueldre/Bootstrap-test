@@ -17,29 +17,148 @@ html {
   }
 }
 
-body {
-  padding-top: 56px;
-}
-
 h1 {
   font-family: 'Mr Dafoe', cursive;
   font-size: 6rem;
+  @include media-breakpoint-down(xs){
+    font-size: 5rem;
+  }
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+  z-index: 1;
 }
 
-header::after {
-  background-image: url('https://unsplash.it/1900/1080?image=1076');
-  background-position: center;
-  content: "";
-  opacity: 0.4;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-size: cover;
-  position: absolute;
-  z-index: -1;
+header.bg-image-full {
+  position: relative;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  & > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: -1;
+  }
 }
 
 section {
   background-color: white;
+
+  &.bg-image-full {
+    background-image: url('BG2.jpeg');
+    background-position: center;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.filler {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & > .container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+footer {
+  padding-bottom: 0 !important;
+  margin: 0;
+}
+
+.client {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: lighten($dark, 70%);
+  border-radius: 500px 500px 500px 50px;
+  margin-top: 1rem;
+
+  & > img {
+    height: 10rem;
+    flex-shrink: 0;
+    object-fit: cover;
+    padding: 1px;
+    background-color: lighten($dark, 30%);
+    border-radius: 50%;
+  }
+}
+
+.temoignage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+  text-align: left;
+
+  h4 {
+    margin-left: 2rem;
+  }
+}
+
+.chart {
+  width: 100%;
+  margin: 1rem;
+}
+
+.card-deck {
+  justify-content: center;
+}
+
+.card {
+  min-width: 20rem;
+  max-width: 30%;
+  margin: 1rem;
+
+  @include media-breakpoint-down(sm) {
+    max-width: 80%;
+  }
+
+  @include media-breakpoint-down(xs) {
+    max-width: 90%;
+  }
+}
+
+.map {
+  height: 25rem;
+  width: 100%;
+  margin: 1rem;
+  overflow: hidden;
+  border: 1px solid $secondary;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  padding: 1rem;
+
+  .form-group {
+    width: 100%;
+  }
+}
+
+.contact.container {
+  max-width: 40rem;
+}
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }

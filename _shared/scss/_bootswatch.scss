@@ -14,23 +14,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 
 // Navbar ======================================================================
 
-.navbar {
-  @include shadow();
-}
-
-.bg-primary {
-  border-color: darken($primary, 5%);
-}
-
-.bg-dark {
-  border-color: darken($dark, 5%);
-}
-
-.bg-light {
-  background-color: #fff !important;
-  border-color: darken(#fff, 5%);
-}
-
 // Buttons =====================================================================
 
 .btn {
@@ -452,7 +435,7 @@ a.list-group-item {
     &.active {
       background-color: $warning;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($warning, 5%);
@@ -463,7 +446,7 @@ a.list-group-item {
     &.active {
       background-color: $danger;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($danger, 5%);
